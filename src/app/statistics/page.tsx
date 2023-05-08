@@ -47,7 +47,6 @@ const Statistics = () => {
 
     const response = await fetchMissingDailyMem(oldestUnix, newestUnix);
 
-    console.log('RESPONSE', response)
     if (response) {
       setMissingDailyMem(response);
     }
@@ -57,8 +56,6 @@ const Statistics = () => {
       setMissingLoading(false)
     }
   }
-
-
 
   const getchMissingDailyMem = async () => {
     const [start, end] = dateRange;

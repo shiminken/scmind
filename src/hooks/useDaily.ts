@@ -2,7 +2,7 @@ export const useDaily = () => {
   const fetchMissingDailyMem = async (oldest: string, latest: string) => {
     try {
       const result = await fetch(
-        `http://localhost:3000/slacks/missing-members?oldest=${oldest}&latest=${latest}`,
+        `https://sc-daily-bot.herokuapp.com/slacks/missing-members?oldest=${oldest}&latest=${latest}`,
         {
           method: 'GET'
         }
