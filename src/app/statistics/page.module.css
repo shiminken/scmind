@@ -1,0 +1,82 @@
+.main {
+  min-height: 100vh;
+}
+
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.logo {
+  height: 32px;
+  margin: 16px;
+  color: #fff;
+  font-size: medium;
+  font-weight: 600;
+}
+.siteLayoutWrapper {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.siteLayout {
+  background: #fff;
+}
+
+
+.datePickerWrapper {
+  border-right: 1px solid #e8e8e8;
+  padding-right: 30px;
+}
+
+.contentLayoutWrapper {
+  background: #fff;
+  margin: 24px 16px;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 0.3fr 1fr;
+}
+
+.statisticWrapper {
+  margin-left: 20px;
+}
+
+.generateBtn {
+  margin-top: 20px;
+}
+
+.layout {
+  height: 100vh;
+}
+
+
+.statisticDetailWrapper {
+   margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+
+.memberWrapper {
+  display: grid;
+  grid-template-columns: 0.05fr 1fr;
+  margin-top: 15px;
+  border-bottom: 0.5px solid #e8e8e8;
+  padding-bottom: 15px;
+}
+
+.userIcon {
+ color: #1890ff;
+ font-size: 1.3rem;
+}
+.userMissing {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-left: 40px;
+}
+
+.spin {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

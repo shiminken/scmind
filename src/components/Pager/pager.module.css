@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.date {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
