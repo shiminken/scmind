@@ -30,40 +30,31 @@ const Statistics = () => {
   const [missingLoading, setMissingLoading] = useState<boolean>(false);
   const { fetchMissingDailyMem } = useDaily();
 
-
   const _triggerMissingDailyMemAPI = async (startDate: any, endDate: any) => {
     try {
       setMissingLoading(true);
+      const oldestUnix = convertDateTimeToUnix(startDate, "06:00");
+      const newestUnix = convertDateTimeToUnix(endDate, "23:59");
 
-    const oldestUnix = convertDateTimeToUnix(
-     startDate,
-      "06:00"
-    );
-    const newestUnix = convertDateTimeToUnix(
-     endDate,
-      "23:59"
-    );
-
-
-    const response = await fetchMissingDailyMem(oldestUnix, newestUnix);
-
-    if (response) {
-      setMissingDailyMem(response);
-    }
+      const response = await fetchMissingDailyMem(oldestUnix, newestUnix);
+      if (response) {
+        setMissingDailyMem(response);
+      }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     } finally {
-      setMissingLoading(false)
+      setMissingLoading(false);
     }
-  }
+  };
 
   const getchMissingDailyMem = async () => {
     const [start, end] = dateRange;
+
     const dayDiffRange = getDatesBetween(start, end);
+
     setDayDiffs(dayDiffRange);
 
-    await  _triggerMissingDailyMemAPI(dayDiffRange[0], dayDiffRange[0])
-
+    await _triggerMissingDailyMemAPI(dayDiffRange[0], dayDiffRange[0]);
   };
 
   const _renderDatePicker = () => {
@@ -89,7 +80,6 @@ const Statistics = () => {
   };
 
   const _renderMissingDailyMem = () => {
-
     if (dayDiffs?.length) {
       return (
         <div>
@@ -99,29 +89,35 @@ const Statistics = () => {
               const selectedDay = dayDiffs.filter(
                 (item, index) => index === selectedItem
               )?.[0];
-             await _triggerMissingDailyMemAPI(selectedDay, selectedDay)
+              await _triggerMissingDailyMemAPI(selectedDay, selectedDay);
             }}
           />
 
           <div>
-             {missingLoading && <Spin style={{
-                marginTop: 20,
-                marginLeft: "50%",
-              }}/>}
-            {missingDailyMem?.missingMembers?.length ? (<h2 style={{marginTop: 20}}>
-              {missingDailyMem?.missingMembers?.length} members
-            </h2>) : null}
+            {missingLoading && (
+              <Spin
+                style={{
+                  marginTop: 20,
+                  marginLeft: "50%",
+                }}
+              />
+            )}
+            {missingDailyMem?.missingMembers?.length ? (
+              <h2 style={{ marginTop: 20 }}>
+                {missingDailyMem?.missingMembers?.length} members
+              </h2>
+            ) : null}
 
-            {missingDailyMem?.missingMembers?.length ?
-              missingDailyMem?.missingMembers?.map((item: any) => {
-                return (
-                  <div key={item.id} className={styles.memberWrapper}>
-                    <QqCircleFilled className={styles.userIcon} />
-                    <span className={styles.userMissing}>{item.name}</span>
-                  </div>
-                );
-              }) : null}
-
+            {missingDailyMem?.missingMembers?.length
+              ? missingDailyMem?.missingMembers?.map((item: any) => {
+                  return (
+                    <div key={item.id} className={styles.memberWrapper}>
+                      <QqCircleFilled className={styles.userIcon} />
+                      <span className={styles.userMissing}>{item.name}</span>
+                    </div>
+                  );
+                })
+              : null}
           </div>
         </div>
       );
